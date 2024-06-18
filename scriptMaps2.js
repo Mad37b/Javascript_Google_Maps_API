@@ -38,8 +38,7 @@ async function  initMap() {
     let i;
    
     //Scale
-    const pinScaled = new google.maps.marker.PinElement({scale: 1.0,});
-    const pin =new PinElement({scale:2})
+  
         const infowindow = new google.maps.InfoWindow({
             content: '<div><img src="perro.png" alt="Image" style="width:200px;height:150px;"><br><strong> Marker Title</strong><br>Marker Description</div>',
         });
@@ -48,14 +47,18 @@ async function  initMap() {
         
          const position = new google.maps.LatLng(markers[i][1], markers[i][2]);
          bounds.extend(position);
+         
 
-        let marker =  new google.maps.marker({
+        let marker =  new google.maps.Marker({
              position,
              map: map,
              title: markers[i][0],
-             icon: {url: "perro.png"},
-                    
-                       
+             icon: {
+                url: "perro.png", // url
+                scaledSize: new google.maps.Size(50, 50), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
+            },         
          });
 
          // Scale the marker one time as a static property
